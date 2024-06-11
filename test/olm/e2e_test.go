@@ -41,8 +41,8 @@ var _ = BeforeSuite(func() {
 		operatorsdkBin = defaultOperatorsdkBin
 	}
 
-	img = fmt.Sprintf("ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-catalog:bundle-%s", version)
-	opm := fmt.Sprintf("ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-index:%s", version)
+	img = fmt.Sprintf("ghcr.io/souleb/openshift-flux-operator-catalog:bundle-%s", version)
+	opm := fmt.Sprintf("ghcr.io/souleb/openshift-flux-operator-index:%s", version)
 
 	By("loading the flux-operator bundle image on Kind")
 	err := utils.LoadImageToKindClusterWithName(img, "/test/olm")

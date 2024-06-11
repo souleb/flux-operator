@@ -8,7 +8,7 @@ spec:
   description: custom
   publisher: custom
   sourceType: grpc
-  image: ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-index:v0.3.0
+  image: ghcr.io/souleb/openshift-flux-operator-index:v0.3.0
   updateStrategy:
     registryPoll:
       interval: 30m

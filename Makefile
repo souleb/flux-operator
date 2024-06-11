@@ -4,7 +4,7 @@
 # Makefile for building, testing, and deploying the Flux Operator.
 
 # Image URL to use all building/pushing image targets
-IMG ?= ghcr.io/controlplaneio-fluxcd/flux-operator:latest
+IMG ?= ghcr.io/souleb/flux-operator:latest
 
 # FLUX_OPERATOR_VERSION refers to the version of the operator to be tested
 # under ./config/operatorhub/flux-operator/<version> directory.
@@ -159,7 +159,7 @@ opm-index:
 test-olm: operator-sdk opm-index
 	yq e -i ".spec.startingCSV=\"flux-operator.${FLUX_OPERATOR_VERSION}\"" \
 	./config/operatorhub/flux-operator/testdata/004-operator-subscription.yaml
-	yq e -i ".spec.image=\"ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-index:${FLUX_OPERATOR_VERSION}\"" \
+	yq e -i ".spec.image=\"ghcr.io/souleb/openshift-flux-operator-index:${FLUX_OPERATOR_VERSION}\"" \
 	./config/operatorhub/flux-operator/testdata/003-catalog-source.yaml
 	export OLM_VERSION=${OLM_VERSION} && \
 	export FLUX_OPERATOR_VERSION=${FLUX_OPERATOR_VERSION} && \

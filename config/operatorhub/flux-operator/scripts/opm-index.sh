@@ -23,20 +23,20 @@ if [ ! -d "${DIR}/${VERSION}" ]; then
 fi
 
 # docker build and push individual bundles
-docker build -t ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-catalog:bundle-"${VERSION}" \
+docker build -t ghcr.io/souleb/openshift-flux-operator-catalog:bundle-"${VERSION}" \
 -f "${DIR}/bundle.Dockerfile" "${DIR}/${VERSION}"
-docker push ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-catalog:bundle-"${VERSION}"
+docker push ghcr.io/souleb/openshift-flux-operator-catalog:bundle-"${VERSION}"
 
 docker build -t opm --build-arg ARCH=$ARCH -f "${DIR}/Dockerfile.opm" .
 
-docker run --rm -it \
+docker run --rm \
   --privileged \
   -v /var/lib/docker:/var/lib/docker \
   -v /var/run/docker.sock:/var/run/docker.sock \
   opm:latest index add \
   --container-tool docker \
-  --bundles ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-catalog:bundle-"${VERSION}" \
-  --tag ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-index:${VERSION}
+  --bundles ghcr.io/souleb/openshift-flux-operator-catalog:bundle-"${VERSION}" \
+  --tag ghcr.io/souleb/openshift-flux-operator-index:${VERSION}
 
 #push index
-docker push ghcr.io/controlplaneio-fluxcd/openshift-flux-operator-index:${VERSION}
+docker push ghcr.io/souleb/openshift-flux-operator-index:${VERSION}
